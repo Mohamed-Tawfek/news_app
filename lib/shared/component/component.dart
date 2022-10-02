@@ -18,60 +18,43 @@ Widget buildNewsItem(context,
                     initialUrl: newsUrl,
                   )));
     },
-    child: Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: 100,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: newsImageUrl == null
-                  ? Image.asset(
-                      'assets/images/image_not_found.png',
-                      height: 100,
-                      width: 100,
-                      fit: BoxFit.cover,
-                    )
-                  : Image.network(
-                      newsImageUrl,
-                      height: 100,
-                      width: 100,
-                      fit: BoxFit.cover,
-                    ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Text(
-                    newsTitle!,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: NewsCubit.isDark == true
-                            ? Colors.white
-                            : Colors.black),
-                  ),
-                  const Spacer(),
-                  Text(
-                    newsDate!.substring(0, 10),
-                    style: const TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            )
-          ],
+    child: Row(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: newsImageUrl == null || !NewsCubit.networkStatus
+              ? Image.asset(
+                  'assets/images/image_not_found.png',
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
+                )
+              : Image.network(
+                  newsImageUrl,
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
         ),
-      ),
+        Expanded(
+          child: ListTile(
+            title: Text(
+              newsTitle!,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color:
+                      NewsCubit.isDark == true ? Colors.white : Colors.black),
+            ),
+            subtitle: Text(
+              newsDate!.substring(0, 10),
+              style: const TextStyle(color: Colors.grey),
+            ),
+          ),
+        ),
+      ],
     ),
   );
 }

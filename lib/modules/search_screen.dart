@@ -7,7 +7,7 @@ import '../shared/component/component.dart';
 
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);
-  TextEditingController controller = TextEditingController();
+  final TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NewsCubit, NewsState>(

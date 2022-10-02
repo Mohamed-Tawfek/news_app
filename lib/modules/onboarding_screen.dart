@@ -1,13 +1,12 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:news_app/layout/home_screen.dart';
 import 'package:news_app/shared/network/local/cash_helper.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatelessWidget {
-  OnboardingScreen({Key? key}) : super(key: key);
-  List<OnBoardingItem> onBoardingItems = [
+    OnboardingScreen({Key? key}) : super(key: key);
+ final List<OnBoardingItem> onBoardingItems = [
     OnBoardingItem(imagePath: 'assets/images/1.png', title: 'اخبار عاجلة'),
     OnBoardingItem(imagePath: 'assets/images/2.png', title: 'العالم بين يديك'),
     OnBoardingItem(
@@ -17,7 +16,7 @@ class OnboardingScreen extends StatelessWidget {
     OnBoardingItem(
         imagePath: 'assets/images/5.png', title: 'استمتع واترك الباقى لنا'),
   ];
-  PageController pageController = PageController();
+    final PageController pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Directionality(

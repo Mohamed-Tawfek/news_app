@@ -11,7 +11,6 @@ class SportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    NewsCubit.get(context).getSportData();
     return BlocConsumer<NewsCubit, NewsState>(
       listener: (context, state) {},
       builder: (context, state) {

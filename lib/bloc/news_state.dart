@@ -27,3 +27,5 @@ class GetSearchDataSuccessState extends NewsState {}
 class GetSearchDataLoadingState extends NewsState {}
 
 class GetSearchDataErrorState extends NewsState {}
+
+class SwitchToOfflineModeState extends NewsState {}

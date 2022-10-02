@@ -12,6 +12,7 @@ void main() {
   BlocOverrides.runZoned(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+
       await CashHelper.init();
       NewsCubit.isDark = CashHelper.getData(key: 'isDark') ?? false;
       NewsCubit.onBoarding = CashHelper.getData(key: 'onBoarding') ?? false;
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<NewsCubit, NewsState>(
         listener: (context, state) {},
         builder: (context, state) {
+          NewsCubit.get(context).checkNetworkStatus();
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'News',
@@ -57,7 +59,7 @@ class MyApp extends StatelessWidget {
                     unselectedItemColor: Colors.white)),
             themeMode:
                 NewsCubit.isDark == true ? ThemeMode.dark : ThemeMode.light,
-            home: Directionality(
+            home: const Directionality(
                 textDirection: TextDirection.rtl, child: SplashScreen()),
           );
         },
