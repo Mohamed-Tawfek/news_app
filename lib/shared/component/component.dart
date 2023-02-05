@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/bloc/news_cubit.dart';
 import 'package:news_app/models/news_model.dart';
@@ -22,15 +23,15 @@ Widget buildNewsItem(context,
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(15),
-          child: newsImageUrl == null || !NewsCubit.networkStatus
+          child: newsImageUrl == null
               ? Image.asset(
                   'assets/images/image_not_found.png',
                   height: 100,
                   width: 100,
                   fit: BoxFit.cover,
                 )
-              : Image.network(
-                  newsImageUrl,
+              : CachedNetworkImage(
+                  imageUrl: newsImageUrl,
                   height: 100,
                   width: 100,
                   fit: BoxFit.cover,

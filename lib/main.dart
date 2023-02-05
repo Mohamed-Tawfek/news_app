@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/bloc/news_cubit.dart';
 import 'package:news_app/bloc/news_state.dart';
@@ -36,12 +37,17 @@ class MyApp extends StatelessWidget {
           NewsCubit.get(context).checkNetworkStatus();
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'News',
+           title: 'News',
             theme: ThemeData(
                 scaffoldBackgroundColor: Colors.white,
                 appBarTheme: const AppBarTheme(
                     color: Colors.white,
                     elevation: 0.0,
+                    systemOverlayStyle: SystemUiOverlayStyle(
+                      statusBarColor: Colors.white,
+
+                      statusBarIconBrightness: Brightness.dark
+                    ),
                     titleTextStyle:
                         TextStyle(color: Colors.black, fontSize: 25),
                     actionsIconTheme: IconThemeData(color: Colors.black)),
