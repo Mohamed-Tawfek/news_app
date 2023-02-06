@@ -77,10 +77,11 @@ class OnboardingScreen extends StatelessWidget {
                     child: IconButton(
                       iconSize: 30,
                       onPressed: () {
-                        if (pageController.page == 4.0) {
+                        if (pageController.page == onBoardingItems.length-1) {
                           CashHelper.setData(key: 'onBoarding', value: true)
                               .then((value) {
-                            Navigator.pushAndRemoveUntil(
+
+                                Navigator.pushAndRemoveUntil(
                                 context,
                                 PageTransition(
                                     type: PageTransitionType.leftToRight,
@@ -89,10 +90,12 @@ class OnboardingScreen extends StatelessWidget {
                           });
 
                         } else {
+
                           pageController.nextPage(
                               duration: const Duration(milliseconds: 900),
                               curve: Curves.fastLinearToSlowEaseIn);
                         }
+
                       },
                       icon: const Icon(Icons.arrow_forward_ios_rounded),
                     ),

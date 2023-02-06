@@ -11,10 +11,11 @@ import 'modules/splash_screen.dart';
 
 void main() {
   BlocOverrides.runZoned(
-    () async {
+        () async {
       WidgetsFlutterBinding.ensureInitialized();
 
       await CashHelper.init();
+
       NewsCubit.isDark = CashHelper.getData(key: 'isDark') ?? false;
       NewsCubit.onBoarding = CashHelper.getData(key: 'onBoarding') ?? false;
       DioHelper.init();
@@ -37,24 +38,30 @@ class MyApp extends StatelessWidget {
           NewsCubit.get(context).checkNetworkStatus();
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-           title: 'News',
+            title: 'News',
             theme: ThemeData(
                 scaffoldBackgroundColor: Colors.white,
                 appBarTheme: const AppBarTheme(
                     color: Colors.white,
                     elevation: 0.0,
                     systemOverlayStyle: SystemUiOverlayStyle(
-                      statusBarColor: Colors.white,
+                        statusBarColor: Colors.white,
 
-                      statusBarIconBrightness: Brightness.dark
+                        statusBarIconBrightness: Brightness.dark
                     ),
                     titleTextStyle:
-                        TextStyle(color: Colors.black, fontSize: 25),
+                    TextStyle(color: Colors.black, fontSize: 25),
                     actionsIconTheme: IconThemeData(color: Colors.black)),
                 bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                     selectedItemColor: Colors.deepOrange)),
             darkTheme: ThemeData(
+
                 appBarTheme: const AppBarTheme(
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                      statusBarColor: Color(0xFF15202B),
+
+                      statusBarIconBrightness: Brightness.light
+                  ),
                   color: Color(0xFF15202B),
                   elevation: 0.0,
                   titleTextStyle: TextStyle(color: Colors.white, fontSize: 25),
@@ -64,7 +71,7 @@ class MyApp extends StatelessWidget {
                     backgroundColor: Color(0xFF15202B),
                     unselectedItemColor: Colors.white)),
             themeMode:
-                NewsCubit.isDark == true ? ThemeMode.dark : ThemeMode.light,
+            NewsCubit.isDark == true ? ThemeMode.dark : ThemeMode.light,
             home: const Directionality(
                 textDirection: TextDirection.rtl, child: SplashScreen()),
           );
